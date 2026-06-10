@@ -20,5 +20,8 @@ DIY kazeta
 	
 - Connector:
 	https://www.aliexpress.com/item/1005006991433012.html
+- SRAM:
+	- Podle toho jestli naše hra bude potřebovat ukládat data mezi sessions (high scores?)
+	- 6264 (8 KB)
 
 Reference image for the cartridge: https://www.emulationonline.com/systems/nes/cartridge-basics/nrom-128-pinball-pcb.webp
