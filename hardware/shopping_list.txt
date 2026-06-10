@@ -1,0 +1,24 @@
+Konzole
+--------------
+Dostupné listings:
+- https://pc.bazos.cz/inzerat/219083138/nintendo-nes.php (2449 CZK)
+- https://pc.bazos.cz/inzerat/219588870/nintendo-nes-1985-top-stav-2x-ovladac-hra-zdroj-kabel.php (2900 CZK)
+- https://www.vinted.cz/items/9107782096-nintendo-nes-z-padami-i-zasilaczem-nowym-kablem-av (1802 CZK)
+Možná lepší utratit o trochu víc za ten benefit osobního vyzvednutí na Bazoši?
+
+Televizor
+--------------
+Oli má starej televizor u prarodičů. Termín vyzvednutí: DOMLUVIT
+
+DIY kazeta
+--------------
+- 3d tiskárna [x]
+- EEPROMs:
+	28C64 (8 KB) (EEPROM) x2
+- Case:
+	https://www.thingiverse.com/thing:113502 (licence CC-BY-NC)
+	
+- Connector:
+	https://www.aliexpress.com/item/1005006991433012.html
+
+Reference image for the cartridge: https://www.emulationonline.com/systems/nes/cartridge-basics/nrom-128-pinball-pcb.webp

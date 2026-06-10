@@ -1,0 +1,3 @@
+[submodule "hardware/NES"]
+	path = hardware/NES
+	url = https://github.com/schenkzoola/NES
