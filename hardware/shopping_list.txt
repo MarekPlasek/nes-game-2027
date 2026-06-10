@@ -23,5 +23,6 @@ DIY kazeta
 - SRAM:
 	- Podle toho jestli naše hra bude potřebovat ukládat data mezi sessions (high scores?)
 	- 6264 (8 KB)
+	- spolu ještě se socketou na CR2032 baterii
 
 Reference image for the cartridge: https://www.emulationonline.com/systems/nes/cartridge-basics/nrom-128-pinball-pcb.webp
