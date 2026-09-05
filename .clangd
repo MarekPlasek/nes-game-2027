@@ -1,4 +1,0 @@
-CompileFlags:
-  Add: 
-    - "-I/usr/share/cc65/include"
-    - "-I./include"
