@@ -35,7 +35,7 @@ run_game () {
 }
 
 main () {
-	if [[ "$1" == "clear" ]]; then
+	if [[ "$1" == "purge" ]]; then
 		printf "Removing build/\n"
 		rm -r build
 		exit
