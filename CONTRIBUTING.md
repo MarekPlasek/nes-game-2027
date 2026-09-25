@@ -48,7 +48,7 @@ jinak po ostatních dělej jenom `git push`.
 
 Potom co jseš hotovej/-á, tak to vraž na pull request.
 
-## Etiketa kódu
+## Code styling
 
 Tato sekce popisuje upravenost kódu přítomná v tomto projektu.
 
@@ -57,10 +57,22 @@ Tato sekce popisuje upravenost kódu přítomná v tomto projektu.
 Lokální proměnné jsou proměnné přítomné ve funkcích či jiných místech nedefinovaných předprocesorem `#define`.
 Lokální proměnné používají **camel case.**
 
+```c
+int main() {
+	int randomNumber = 42; // it's random in the sense that I picked it randomly when writing this doc (trust)
+	return randomNumber / 7;
+}
+```
+
 #### Makra
 
 Makra jsou proměnné a registry, či jiné paměťové adresy, definované pomocí předprocesoru `#define`.
 Makra používají **kapitalizovaný snake case**. 
+
+```c
+#define GENERIC_REGISTER (*(volatile unsigned char*)0x2000)
+#define PLAYER_HP 20
+```
 
 #### Funkce
 
@@ -79,3 +91,24 @@ int badFormatting()
 }
 ```
 
+#### Header soubory
+
+Každý header soubor musí mít v sobě **include guard**.
+
+```c
+#ifndef PPU_H
+	#define PPU_H
+
+	#define PPU_CTRL (*(volatile unsigned char)0x2000)
+
+#endif
+```
+
+## Struktura kódu
+
+Codebase pro hru je rozdělen do složek `src/` a `include/`. Složka `src/` obsahuje
+veškerý C kód v `.c` souborech a veškerý kód pro assembler. Složka `include/` mezitím
+obsahuje všechny header soubory pro codebase.
+
+Složka `src/lib/` obsahuje generický, několikrát použitelný kód např.: drivery pro čtení
+ovladačů, interakci s APU, atd.
