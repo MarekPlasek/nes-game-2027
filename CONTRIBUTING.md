@@ -11,6 +11,8 @@ Tento dokument popisuje domluvené protokoly pro spolupráci na této repozitá�
 
 Nové funkce jsou vytvářené na krátkodobých větvích odvětvující se od větve `main`.
 
+Výjimku mají hotfix patche, například oprava překlepů nechytnutých v PR review, nebo doplnění informací v Markdown dokumentech. Související commity budou označeny s prefixem `URGENT:` či `HOTFIX:`.
+
 ### Počátek práce na funkci
 
 Po tom, co člověk vytvoří a přidělí si/je člověku přidělen úkol v tasklistě Game Design Docu, musí
@@ -35,7 +37,7 @@ git clone git@github.com:MarekPlasek/nes-game-2027.git
 Potom udělej tohle:
 
 ```sh
-git branch -M <nazev-funkce-co-chces-v-kebab-case>
+git checkout -b <nazev-funkce-co-chces-v-kebab-case>
 ```
 
 Potom co uděláš první commit udělej tohle:
