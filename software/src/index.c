@@ -1,4 +1,3 @@
-#include <nes.h>
 #include "apu.h"
 #include "joypad.h"
 #include "ppu.h"

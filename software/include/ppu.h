@@ -10,4 +10,5 @@
 	#define PPU_VBLANK 0x80
 
 	void ppu_stabilize();
+	void waitvsync();
 #endif
