@@ -6,7 +6,6 @@ void main() {
 	unsigned char pad;
 	unsigned char music = 1;
 
-	ppu_stabilize();
 	apu_init();
 	
 	APU_SQR_ONE_PER_LO = 0x17;

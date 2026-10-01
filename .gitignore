@@ -1,3 +1,4 @@
 # Build artefacts
 build/
+dist/
 **/*.o
