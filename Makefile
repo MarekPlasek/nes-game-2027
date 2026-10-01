@@ -3,7 +3,6 @@ AS = /usr/bin/ca65
 LD = /usr/bin/ld65
 
 CFLAGS := -I "./software/include" -Oirs --add-source
-ASFLAGS := -I "/usr/share/cc65/asminc"
 LDFLAGS := -C linker.cfg
 
 c_sources := $(subst software/src/,,$(shell find software/src -name '*.c'))
