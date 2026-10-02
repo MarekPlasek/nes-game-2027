@@ -102,8 +102,6 @@ irq:
 
 .segment "RODATA"
 
-.segment "SAMPLES"
-
 .segment "CHARS"
 
 .segment "VECTORS"
