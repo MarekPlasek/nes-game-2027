@@ -47,7 +47,7 @@ bool checkForCollision(bool sprite, int position) {
  */
 
 void movementRight(unsigned int* current_position) {
-    if (checkForCollision(true, current_position + default_step)) { //placeholders - default_step -- how big is one "step" in pixels
+    if (checkForCollision(true, *current_position + default_step)) { //placeholders - default_step -- how big is one "step" in pixels
         move(1,1);
     }
 }
@@ -56,7 +56,7 @@ void movementRight(unsigned int* current_position) {
  * int current_position - just a placeholder
  */
 void movementLeft(unsigned int* current_position) {
-    if (checkForCollision(true, current_position - default_step)) { //placeholders - default_step -- how big is one "step" in pixels
+    if (checkForCollision(true, *current_position - default_step)) { //placeholders - default_step -- how big is one "step" in pixels
         move(1,1);
     }
 }
@@ -64,10 +64,10 @@ void movementLeft(unsigned int* current_position) {
 void movement(unsigned char* pad) {
     unsigned int current_position; //placeholder
 
-	if (pad & JOYPAD_RIGHT) {
+	if (*pad & JOYPAD_RIGHT) {
         movementRight(&current_position);
     };
-    if (pad & JOYPAD_LEFT) {
+    if (*pad & JOYPAD_LEFT) {
         movementLeft(&current_position);
     }
 }
