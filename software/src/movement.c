@@ -17,6 +17,11 @@ int default_step;
  *
  */
 void move(int direction, int pixels) {
+	/* We will definetly need to either pass a pointer
+	 * to the current player position variable, or just
+	 * keep a constant player position variable in the zeropage
+	 * and address it from here.
+	 */
 }
 /**
  * > Zatim nevim jak to delat, ale dumpnu sem alespon napady
@@ -26,13 +31,22 @@ void move(int direction, int pixels) {
  * bool sprite - placeholder
  * int position - placeholder, kde chce ten sprite byt umisten
  */
+
 bool checkForCollision(bool sprite, int position) {
 }
 /**
  * idk if the position will be like this or nah, just a prototype
  * int current_position - just a placeholder
  */
-void movementRight(int current_position) {
+
+/* 
+ * Unsigned ints for positioning will *maybe* result
+ * in some math fuckery when dealing with actually
+ * drawing the player but it will definetly result
+ * in faster code
+ */
+
+void movementRight(unsigned int* current_position) {
     if (checkForCollision(true, current_position + default_step)) { //placeholders - default_step -- how big is one "step" in pixels
         move(1,1);
     }
@@ -41,27 +55,19 @@ void movementRight(int current_position) {
  * idk if the position will be like this or nah, just a prototype
  * int current_position - just a placeholder
  */
-void movementLeft(int current_position) {
+void movementLeft(unsigned int* current_position) {
     if (checkForCollision(true, current_position - default_step)) { //placeholders - default_step -- how big is one "step" in pixels
         move(1,1);
     }
 }
-/**
- * zakladni funkce pro pohyb, urcite projde jeste hodne refactoringem
- */
-void movement() {
-    unsigned char pad;
-    int current_position; //placeholder
-    while (true) {
-        waitvsync();
-		pad = readJoypadOne();
-        if (pad & JOYPAD_RIGHT) {
-            movementRight(current_position);
-        };
-        if (pad & JOYPAD_LEFT) {
-            movementLeft(current_position);
-        }
-    }
-   
 
+void movement(unsigned char* pad) {
+    unsigned int current_position; //placeholder
+
+	if (pad & JOYPAD_RIGHT) {
+        movementRight(&current_position);
+    };
+    if (pad & JOYPAD_LEFT) {
+        movementLeft(&current_position);
+    }
 }
