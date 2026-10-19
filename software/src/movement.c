@@ -4,6 +4,9 @@
 #include "joypad.h"
 #include "ppu.h"
 int default_step;
+int default_jump;
+int default_dash;
+int last_movement;
 
 /**
  * > Jsem velmi confused z wiki
@@ -57,17 +60,59 @@ void movementRight(unsigned int* current_position) {
  */
 void movementLeft(unsigned int* current_position) {
     if (checkForCollision(true, *current_position - default_step)) { //placeholders - default_step -- how big is one "step" in pixels
-        move(1,1);
+        move(1, default_step);
+    }
+}
+/**
+ * the current position is placeholder - prob will have to differ Y a X??
+ * int* current_position - placeholder
+ */
+void jump (unsigned int* current_position) {
+    if(checkForCollision(true, *current_position + default_jump)) {
+        move (3, default_jump);
     }
 }
 
+/**
+ * current_position - placeholder
+ */
+void dash (unsigned int* current_position) {
+    switch (last_movement) {
+        case 1: {
+            if (checkForCollision(true, *current_position + default_dash)) {
+                move(1, default_dash);
+            }
+            break;
+        };
+
+        case 2: {
+            if(checkForCollision(true, *current_position - default_dash)) {
+                move(2, default_dash);
+            }
+            break;
+        }
+    }
+}
+/**
+ * for dashing (and maybe sprite facing? i added variable which remembers where was the character moving for the last time)
+ */
 void movement(unsigned char* pad) {
     unsigned int current_position; //placeholder
 
 	if (*pad & JOYPAD_RIGHT) {
         movementRight(&current_position);
+        last_movement = 1;
     };
     if (*pad & JOYPAD_LEFT) {
         movementLeft(&current_position);
+        last_movement = 2;
+    }
+
+    if(*pad & JOYPAD_UP) {
+        jump(&current_position);
+    }
+    if(*pad & JOYPAD_B) {
+        dash(&current_position);
     }
 }
+
