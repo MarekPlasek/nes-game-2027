@@ -49,5 +49,5 @@ make
 ...which will output a binary at `dist/game.nes`.
 
 <div align="center">
- <img src="./github/readme/madewithlove.gif">
+ <img src="https://raw.githubusercontent.com/MarekPlasek/nes-game-2027/refs/heads/new-readme/.github/readme/madewithlove.gif">
 </div>
