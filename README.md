@@ -48,4 +48,6 @@ make
 
 ...which will output a binary at `dist/game.nes`.
 
-![made with love](./.github/readme/madewithlove.gif)
+<div align="center">
+ <img src="./github/readme/madewithlove.gif">
+</div>
