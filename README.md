@@ -1,7 +1,7 @@
 <div align="center">
 	<div id="user-content-toc">
 		<h1>Tornus Extas</h1>
-		<sub><i>A game by Crystal Nux</i></sub>
+		<p><i>A game by Crystal Nux</i></p>
 	</div>
 	<hr>
 	<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/MarekPlasek/nes-game-2027">
@@ -18,8 +18,6 @@ The streets of district Tau have been riddled with a black market of bootleg rob
 ---
 
 The game will be available for download both on [itch.io](https://crystal-nux.itch.io/tornus-extas) and here in the releases section. Emulator compatibility should be universal. However, **PAL hardware should be used when playing on an original NES**.
-
-<iframe frameborder="0" src="https://itch.io/embed/5271790" width="552" height="167"><a href="https://crystal-nux.itch.io/tornus-extas">Tornus Extas by Crystal Nux</a></iframe>
 
 [Spinning NES controller with heading "Controls"]
 ---
