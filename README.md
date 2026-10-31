@@ -1,7 +1,7 @@
 <div align="center">
 	<div id="user-content-toc">
 		<h1>Tornus Extas</h1>
-		<p><i>A game by <span><img src="https://raw.githubusercontent.com/MarekPlasek/nes-game-2027/refs/heads/new-readme/.github/readme/crystalnux.png"></span> Crystal Nux</i></p>
+		<p><i>A game by <span><img style="padding-left: 2" src="https://raw.githubusercontent.com/MarekPlasek/nes-game-2027/c6d4011385fa9aba5ad2c9fb3b4369a1fcb13b9e/.github/readme/crystalnux.png"></span> Crystal Nux</i></p>
 	</div>
 	<hr>
 	<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/MarekPlasek/nes-game-2027">
