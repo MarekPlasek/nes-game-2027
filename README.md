@@ -6,7 +6,7 @@
 	<hr>
 	<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/MarekPlasek/nes-game-2027">
 	<img alt="GitHub Release" src="https://img.shields.io/github/v/release/CodyMarkix/nes-game-2027">
-	<img alt="Static Badge" src="https://img.shields.io/badge/itch.io-red?logo=itchdotio&logoColor=white&link=https%3A%2F%2Fcrystal-nux.itch.io%2Ftornus-extas">
+	<object alt="Static Badge" data="https://img.shields.io/badge/itch.io-red?logo=itchdotio&logoColor=white&link=https%3A%2F%2Fcrystal-nux.itch.io%2Ftornus-extas"></object>
 </div>
 
 [Protag killing a goon]
