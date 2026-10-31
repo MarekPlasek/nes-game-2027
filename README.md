@@ -1,11 +1,7 @@
 <div align="center">
 	<div id="user-content-toc">
-		<summary>
-			<h1>Tornus Extas</h1>
-		</summary>
-		<summary>
-			<sub><i>A game by Crystal Nux</i></sub>
-		</summary>
+		<h1>Tornus Extas</h1>
+		<sub><i>A game by Crystal Nux</i></sub>
 	</div>
 	<hr>
 	<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/MarekPlasek/nes-game-2027">
