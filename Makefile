@@ -1,8 +1,9 @@
-CC = /usr/bin/cc65
-AS = /usr/bin/ca65
-LD = /usr/bin/ld65
+CC = cc65
+AS = ca65
+LD = ld65
 
 CFLAGS := -I "./software/include" -Oirs --add-source
+ASFLAGS := --cpu 6502
 LDFLAGS := -v -C linker.cfg
 
 c_sources := $(subst software/src/,,$(shell find software/src -name '*.c'))
@@ -54,7 +55,7 @@ build/%.o: software/src/%.s
 # Intermediate assembly to object files
 build/%.o: build/%.s
 	@mkdir -p $(dir $@)
-	$(AS) -o $@ $<
+	$(AS) $(ASFLAGS) -o $@ $<
 
 # Linking everything together
 dist/game.nes: $(o_files)
