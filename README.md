@@ -37,7 +37,7 @@ The game will be available for download both on [itch.io](https://crystal-nux.it
 
 The game requires the following development dependencies:
 
-- CC65 V2.18
+- CC65 (latest git tree)
 - GNU Make
 - [NEXXT Studio](https://frankengraphics.itch.io/nexxt)
 - [FamiStudio](https://famistudio.org/)
