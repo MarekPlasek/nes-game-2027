@@ -1,4 +1,4 @@
-#include "joypad.h"
+#include "io/joypad.h"
 
 unsigned char readJoypadOne() {	
 	unsigned char buttonSnapshot = 0x00;	

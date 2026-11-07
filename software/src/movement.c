@@ -1,8 +1,5 @@
 #include <stdbool.h>
-#include <nes.h>
-#include "apu.h"
-#include "joypad.h"
-#include "ppu.h"
+#include "io/joypad.h"
 int default_step;
 int default_jump;
 int default_dash;
