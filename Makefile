@@ -2,15 +2,15 @@ CC = cc65
 AS = ca65
 LD = ld65
 
-CFLAGS := -I "./software/include" -I "./software/lib/include" -Oirs --add-source
+CFLAGS := -I "./include" -I "./lib/include" -Oirs --add-source
 ASFLAGS := --cpu 6502
 LDFLAGS := -v -C linker.cfg
 
-c_sources := $(subst software/src/,,$(shell find software/src -name '*.c'))
-c_lib := $(subst software/lib/,,$(shell find software/lib -name '*.c'))
+c_sources := $(subst src/,,$(shell find src -name '*.c'))
+c_lib := $(subst lib/,,$(shell find lib -name '*.c'))
 
-s_sources := $(subst software/src/,,$(shell find software/src -name '*.s'))
-s_lib := $(subst software/lib/,,$(shell find software/lib -name '*.s'))
+s_sources := $(subst src/,,$(shell find src -name '*.s'))
+s_lib := $(subst lib/,,$(shell find lib -name '*.s'))
 s_musicassets := $(subst Resources/music,,$(shell find Resources/music -name '*.s'))
 s_intermediate := $(patsubst %.c,build/%.s,$(c_sources))
 
@@ -53,22 +53,22 @@ clean:
 	rm -r build dist
 
 # Compile C source to intermediate assembly
-build/%.s: software/src/%.c
+build/%.s: src/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -o "$@" "$<"
 
 # External C libraries to intermediate assembly
-build/libraries/%.s: software/lib/%.c
+build/libraries/%.s: lib/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -o $@ $<
 
 # Source assembly to object files
-build/%.o: software/src/%.s
+build/%.o: src/%.s
 	@mkdir -p $(dir $@)
 	$(AS) $(ASFLAGS) -o $@ $<
 
 # External assembly libraries to object files
-build/libraries/%.o: software/lib/%.s
+build/libraries/%.o: lib/%.s
 	@mkdir -p $(dir $@)
 	$(AS) $(ASFLAGS) -o $@ $<
 
