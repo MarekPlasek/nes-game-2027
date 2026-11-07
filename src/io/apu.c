@@ -1,4 +1,4 @@
-#include "apu.h"
+#include "io/apu.h"
 
 void apu_init() {
 	APU_SQR_ONE_DV = 0x30;
