@@ -2,9 +2,9 @@
 ; 
 ; based on code from nesdoug <dougfraker@gmail.com>, Greopaz/Hitmen <greopaz@gmx.net>, Ullrich von Bassewitz <uz@cc65.org>
 
-	.export _exit,__STARTUP__:absolute=1
+	.export _exit,__STARTUP__:absolute=1,irq,start
 	.import push0,popa,popax,_main,zerobss,copydata
-
+	.import fallbackPalettes
 
 ; Linker generated symbols
 	.import         __RAM_START__, __RAM_SIZE__
@@ -13,41 +13,24 @@
 	.import         __CODE_LOAD__,__CODE_RUN__, __CODE_SIZE__
 	.import         __RODATA_LOAD__,__RODATA_RUN__, __RODATA_SIZE__
 
-	.import			NES_MAPPER, NES_PRG_BANKS, NES_CHR_BANKS, NES_MIRRORING
-
 	.importzp _PAD_STATE, _PAD_STATET
 	.include "zeropage.inc"
 
 PPU_CTRL=$2000
 PPU_MASK=$2001
 PPU_STATUS=$2002
+PPU_OAM_ADDR=$2003
+PPU_ADDR=$2006
+PPU_DATA=$2007
 DMC_FREQ=$4010
 APU_CTRL2=$4017
 
-.segment "HEADER"
-
-.byte "N","E","S",$1a 
-.byte <NES_PRG_BANKS
-.byte <NES_CHR_BANKS
-.byte %00000001 
-.byte <NES_MAPPER&$f0
-
-; Padding (technically not padding but it's stuff we don't need,
-; see: https://www.nesdev.org/wiki/NES_2.0#Header)
-.byte $00, $00, $00, $00
-
-.byte $01 ; PAL designation
-
-; More padding
-.byte $00, $00, $00
-
 .segment "ZEROPAGE"
-
 
 .segment "STARTUP"
 
 start:
-_exit:
+_exit: ; In case some motherfucker decides to call exit() on a platform that has no OS
 	sei
 	cld
 	ldx #$40
@@ -71,19 +54,49 @@ initPPU:
 		bit PPU_STATUS
 		bpl @2
 
-clearRAM:
 	lda #$00
-@1:
-	sta $00,x
-    sta $100,x
-    sta $200,x
-    sta $300,x
-    sta $400,x
-    sta $500,x
-    sta $600,x
-    sta $700,x
-    inx
-	bne @1
+	sta PPU_OAM_ADDR ; Prepare OAMADDR for the easiest copying of sprite data you'll ever see 8)
+
+clearVRAM:
+	ldy #$00
+
+	@loop:
+		stx PPU_ADDR
+		sty PPU_ADDR
+		sta PPU_DATA
+	
+		iny
+		bne @loop
+
+		inx
+		bne @loop
+
+initPalette:
+	ldx #$3F
+	@loop:	
+		stx PPU_ADDR
+		sty PPU_ADDR
+		lda fallbackPalettes,y
+		sta PPU_DATA
+		iny
+
+		cpy #$20 ; Does X and Y form $3F20?
+		bne @loop
+
+clearRAM:
+	ldx #$00
+	lda #$00
+	@1:
+		sta $00,x
+		sta $100,x
+		sta $200,x
+		sta $300,x
+		sta $400,x
+		sta $500,x
+		sta $600,x
+		sta $700,x
+		inx
+		bne @1
 
 	;|-------------------------------
 	;| ✨ Funky C shit ✨
@@ -103,31 +116,29 @@ clearRAM:
     stx	c_sp+1
 	;| -----------------------------
 
-@enableNMI:
+enableRendering:
 	lda #$80
 	sta PPU_CTRL
-	lda #$06
+	lda #$1E
 	sta PPU_MASK
 
 	jmp _main
 
-
-nmi:
-	rti
-
 irq:
 	rti
 
-.segment "RODATA"
+.segment "CHR0"
+; .res 8192 ; Placeholder for actual CHR data
+.incbin "test.chr"
 
-.segment "CHARS"
+.segment "CHR1"
 .res 8192 ; Placeholder for actual CHR data
 
-.segment "VECTORS"
-.word nmi		; $fffa - Will run when a VBlank NMI interrupt is sent
-.word start		; $fffc - Will run on startup and when the "RESET" button is pressed.
-.word irq		; $fffe - irq/brk
+.segment "CHR2"
+.res 8192 ; Placeholder for actual CHR data
 
+.segment "CHR3"
+.res 8192 ; Placeholder for actual CHR data
 
 ; The MIT License (MIT)
 ; Copyright (c) 2018 Doug Fraker

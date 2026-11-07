@@ -3,8 +3,8 @@ AS = ca65
 LD = ld65
 
 CFLAGS := -I "./include" -I "./lib/include" -Oirs --add-source
-ASFLAGS := --cpu 6502
-LDFLAGS := -v -C linker.cfg
+ASFLAGS := --cpu 6502 -g
+LDFLAGS := -v -C linker.cfg --dbgfile dist/game.nes.dbg --mapfile dist/game.nes.map
 
 c_sources := $(subst src/,,$(shell find src -name '*.c'))
 c_lib := $(subst lib/,,$(shell find lib -name '*.c'))
