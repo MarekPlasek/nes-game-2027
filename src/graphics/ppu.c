@@ -1,6 +1,6 @@
-#include "ppu.h"
+#include "graphics/ppu.h"
 
-void waitvsync() {
+void __fastcall__ waitvsync() {
 	while (!(PPU_STATUS & PPU_VBLANK)) {
 		continue;
 	}
