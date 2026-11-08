@@ -1,7 +1,7 @@
 <div align="center">
 	<div id="user-content-toc">
 		<img src="https://raw.githubusercontent.com/MarekPlasek/nes-game-2027/refs/heads/new-readme/.github/readme/tornusextas.png">
-		<p><i>A game by Crystal Nux</i></p>
+		<p><i>A game by Lunar Silt</i></p>
 	</div>
 	<hr>
 	<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/MarekPlasek/nes-game-2027">
