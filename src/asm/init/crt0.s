@@ -3,7 +3,7 @@
 ; based on code from nesdoug <dougfraker@gmail.com>, Greopaz/Hitmen <greopaz@gmx.net>, Ullrich von Bassewitz <uz@cc65.org>
 
 	.export _exit,__STARTUP__:absolute=1,irq,start
-	.import push0,popa,popax,_main,zerobss,copydata,_waitvsync
+	.import push0,popa,popax,_main,zerobss,copydata,_waitVsync
 	.import fallbackPalettes
 
 ; Linker generated symbols
@@ -24,6 +24,8 @@ PPU_ADDR=$2006
 PPU_DATA=$2007
 DMC_FREQ=$4010
 APU_CTRL2=$4017
+
+.include "../../../lib/famistudio/famistudio_ca65.s"
 
 .segment "ZEROPAGE"
 
@@ -46,8 +48,8 @@ _exit: ; In case some motherfucker decides to call exit() on a platform that has
 
 initPPU:
 	bit PPU_MASK ; Clear VBlank flag
-	jsr _waitvsync
-	jsr _waitvsync
+	jsr _waitVsync
+	jsr _waitVsync
 	
 	lda #$00
 	sta PPU_OAM_ADDR ; Prepare OAMADDR for the easiest copying of sprite data you'll ever see 8)
@@ -116,6 +118,8 @@ enableRendering:
 	sta PPU_CTRL
 	lda #$1E
 	sta PPU_MASK
+
+
 
 	jmp _main
 

@@ -10,13 +10,11 @@ c_sources := $(subst src/,,$(shell find src -name '*.c'))
 c_lib := $(subst lib/,,$(shell find lib -name '*.c'))
 
 s_sources := $(subst src/,,$(shell find src -name '*.s'))
-s_lib := $(subst lib/,,$(shell find lib -name '*.s'))
-s_musicassets := $(subst Resources/music,,$(shell find Resources/music -name '*.s'))
+s_musicassets := $(subst Resources/music/,,$(shell find Resources/music -name '*.s'))
 s_intermediate := $(patsubst %.c,build/%.s,$(c_sources))
 
 o_files_c := $(patsubst build/%.s,build/%.o,$(s_intermediate))
 o_files_s := $(patsubst %.s,build/%.o,$(s_sources))
-o_files_lib := $(patsubst %.s,build/libraries/%.o,$(s_lib))
 o_files_musicassets := $(patsubst %.s,build/assets/music/%.o,$(s_musicassets))
 o_files := $(o_files_c) $(o_files_s) $(o_files_lib) $(o_files_musicassets)
 
