@@ -4,6 +4,7 @@
 
 .segment "ZEROPAGE"
 spriteptr: .res 2
+spriteindex: .res 1
 
 .segment "CODE"
 _waitvsync:
@@ -13,34 +14,34 @@ _waitvsync:
 	rts
 
 _loadSprite:
-	ldy #2
-	lda (c_sp),y
-	sta spriteptr+1
-	dey
-	lda (c_sp),y
-	sta spriteptr
-	dey
-	lda (c_sp),y
-
-	asl a
-	asl a ; multiply index by 4
-	tax
-
-	ldy #$0
+	@saveArgs:
+		ldx c_sp
+		stx spriteptr
 	
-	@copy:
-		lda (spriteptr),y
-		sta $0200,x
-		iny
-		inx
-		cpy #4
-		bne @copy
+		ldx #1
+		ldy c_sp,x
+		sty spriteptr,x
 
-	clc
-	lda c_sp
-	adc #3
-	sta c_sp
-	bcc @done
-	inc c_sp+1
+		ldy spriteptr,x	
+		ldx spriteptr
+
+		asl a
+		asl a ; multiply index by 4
+		
+		sta spriteindex
+
+	@copy:
+		; A = 04, X = F6; Y = 07
+		lda 
+
+
+	@returnStackPointer:
+		clc
+		lda c_sp
+		adc #3
+		sta c_sp
+		bcc @done
+		inc c_sp+1
 	@done:
-		rts	
+		rts
+
