@@ -3,7 +3,7 @@
 ; based on code from nesdoug <dougfraker@gmail.com>, Greopaz/Hitmen <greopaz@gmx.net>, Ullrich von Bassewitz <uz@cc65.org>
 
 	.export _exit,__STARTUP__:absolute=1,irq,start
-	.import push0,popa,popax,_main,zerobss,copydata
+	.import push0,popa,popax,_main,zerobss,copydata,_waitvsync
 	.import fallbackPalettes
 
 ; Linker generated symbols
@@ -46,14 +46,9 @@ _exit: ; In case some motherfucker decides to call exit() on a platform that has
 
 initPPU:
 	bit PPU_MASK ; Clear VBlank flag
-
-	@1:
-		bit PPU_STATUS
-		bpl @1
-	@2:
-		bit PPU_STATUS
-		bpl @2
-
+	jsr _waitvsync
+	jsr _waitvsync
+	
 	lda #$00
 	sta PPU_OAM_ADDR ; Prepare OAMADDR for the easiest copying of sprite data you'll ever see 8)
 
