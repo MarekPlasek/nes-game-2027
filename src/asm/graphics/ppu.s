@@ -31,9 +31,7 @@ _loadSprite:
 		sta spriteindex
 
 	@copy:
-		; A = 04, X = F6; Y = 07
-		lda 
-
+		
 
 	@returnStackPointer:
 		clc
