@@ -13,4 +13,5 @@
 	void ppuWaitNmi();
 
 	void __fastcall__ loadSprite(unsigned int* data, unsigned char index);
+	void __fastcall__ resetOAMShadowOffset();
 #endif

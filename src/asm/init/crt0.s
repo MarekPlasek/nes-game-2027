@@ -2,9 +2,10 @@
 ; 
 ; based on code from nesdoug <dougfraker@gmail.com>, Greopaz/Hitmen <greopaz@gmx.net>, Ullrich von Bassewitz <uz@cc65.org>
 
-	.export _exit,__STARTUP__:absolute=1,irq,start
-	.import push0,popa,popax,_main,zerobss,copydata,_waitVsync
+	.export _exit,__STARTUP__:absolute=1,start
+	.import push0,popa,popax,_main,zerobss,copydata,_waitVsync,irq
 	.import fallbackPalettes
+	.exportzp oamshadow
 
 ; Linker generated symbols
 	.import         __RAM_START__, __RAM_SIZE__
@@ -25,9 +26,8 @@ PPU_DATA=$2007
 DMC_FREQ=$4010
 APU_CTRL2=$4017
 
-.include "../../../lib/famistudio/famistudio_ca65.s"
-
 .segment "ZEROPAGE"
+oamshadow: .res 2
 
 .segment "STARTUP"
 
@@ -100,12 +100,19 @@ clearRAM:
 	;|
 	;| I'm still of the opinion that while it would've been a bigger hurdle
 	;| the first few months, development would be faster purely with assembly.
-	
 
+setOamShadow:
+	ldx #$00
+	stx oamshadow
+	ldy #$06
+	sty oamshadow+1	
+
+clearBSS:
 	; Clearing BSS segment.
 	jsr zerobss
 	jsr copydata
 
+setupCStack:
 	; C argument stack pointer initialization
     lda #<(__ARG_STACK_START__+__ARG_STACK_SIZE__)
     ldx	#>(__ARG_STACK_START__+__ARG_STACK_SIZE__)
@@ -119,25 +126,8 @@ enableRendering:
 	lda #$1E
 	sta PPU_MASK
 
-
-
+letsRoll:
 	jmp _main
-
-irq:
-	rti
-
-.segment "CHR0"
-; .res 8192 ; Placeholder for actual CHR data
-.incbin "test.chr"
-
-.segment "CHR1"
-.res 8192 ; Placeholder for actual CHR data
-
-.segment "CHR2"
-.res 8192 ; Placeholder for actual CHR data
-
-.segment "CHR3"
-.res 8192 ; Placeholder for actual CHR data
 
 ; The MIT License (MIT)
 ; Copyright (c) 2018 Doug Fraker
