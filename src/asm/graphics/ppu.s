@@ -1,6 +1,6 @@
 	.import popa
 	.importzp c_sp, nmiflags, oamshadow
-	.export _waitVsync, _loadSprite, _ppuWaitNmi
+	.export _ppuWaitVsync, _ppuLoadSprite, _ppuWaitNmi
 
 .segment "ZEROPAGE"
 spriteptr: .res 2
@@ -12,7 +12,7 @@ _resetOAMShadowOffset:
 	sta oamshadow
 	rts
 
-_waitVsync:
+_ppuWaitVsync:
 	; NEVER USE THIS FUNCTION OUTSIDE OF STARTUP.
 	; READING PPU_STATUS FOR VBLANK IS UNRELIABLE!
 	; https://www.nesdev.org/wiki/PPU_registers#Vblank_flag
@@ -32,7 +32,7 @@ _ppuWaitNmi:
 	sta nmiflags
 	rts
 
-_loadSprite:
+_ppuLoadSprite:
 	asl a
 	asl a ; multiply A by 4
 

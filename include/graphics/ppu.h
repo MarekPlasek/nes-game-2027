@@ -9,9 +9,9 @@
 	// Masks
 	#define PPU_VBLANK 0x80
 
-	void waitVsync();
+	void ppuWaitVsync();
 	void ppuWaitNmi();
 
-	void __fastcall__ loadSprite(unsigned int* data, unsigned char index);
+	void __fastcall__ ppuLoadSprite(unsigned int* data, unsigned char index);
 	void __fastcall__ resetOAMShadowOffset();
 #endif

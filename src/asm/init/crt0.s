@@ -3,7 +3,7 @@
 ; based on code from nesdoug <dougfraker@gmail.com>, Greopaz/Hitmen <greopaz@gmx.net>, Ullrich von Bassewitz <uz@cc65.org>
 
 	.export _exit,__STARTUP__:absolute=1,start
-	.import push0,popa,popax,_main,zerobss,copydata,_waitVsync,irq
+	.import push0,popa,popax,_main,zerobss,copydata,_ppuWaitVsync,irq
 	.import fallbackPalettes
 	.exportzp oamshadow
 
@@ -48,8 +48,8 @@ _exit: ; In case some motherfucker decides to call exit() on a platform that has
 
 initPPU:
 	bit PPU_MASK ; Clear VBlank flag
-	jsr _waitVsync
-	jsr _waitVsync
+	jsr _ppuWaitVsync
+	jsr _ppuWaitVsync
 	
 	lda #$00
 	sta PPU_OAM_ADDR ; Prepare OAMADDR for the easiest copying of sprite data you'll ever see 8)
